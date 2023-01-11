@@ -5,7 +5,6 @@
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -25,6 +24,12 @@ module.exports = {
     extensions: ['.js', '.ts', '.jsx', '.tsx']
   },
   devServer: {
+    client: {
+      overlay: { // * 用来显示报错的
+        errors: true,
+        warnings: false
+      }
+    },
     hot: true,
     compress: true,
     port: 9000,
@@ -57,7 +62,7 @@ module.exports = {
         type: 'asset/inline'
       },
       {
-        test: /\.(ttf|eot|svg)$/,
+        test: /\.(ttf|eot|svg|doc|docx|pdf)$/,
         type: 'asset/resource'
       }
     ]
@@ -74,10 +79,9 @@ module.exports = {
     }),
     new ESLintPlugin({
       extensions: ['.js', '.ts', '.jsx', '.tsx'],
-      fix: true
+      // fix: true
     }),
     new MiniCssExtractPlugin(),
-    new ForkTsCheckerWebpackPlugin(),
     new ReactRefreshWebpackPlugin()
   ]
 }
