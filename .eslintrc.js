@@ -4,12 +4,13 @@
  * @Description: 
  */
 module.exports = {
-  // "globals": ['test'],
+  root: true,
   "env": {
     "browser": true,
     "es2021": true,
     node: true
   },
+  ignorePatterns: ['__local/**/*', "*.test.ts"],  // * 忽略项，不检查什么文件
   "extends": [
     "eslint:recommended", // * eslint 本身的集成
     "plugin:react/recommended",
@@ -17,14 +18,14 @@ module.exports = {
   ],
   "overrides": [
   ],
-  "parser": "@typescript-eslint/parser",
+  "parser": "@typescript-eslint/parser", // * 使用 @typescript-eslint 解析器去解析 ts 文件
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "plugins": [
     "react",
-    "@typescript-eslint"
+    "@typescript-eslint" // * 开启 @typescript-eslint 插件
   ],
   "rules": {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
