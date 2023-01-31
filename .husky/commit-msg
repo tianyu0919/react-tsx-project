@@ -2,7 +2,7 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 echo ""
-echo "\033[1;36m🐑🐑🐑 Running commit-msg...\033[0m"
+echo "\033[1;36m🦊🦊🦊 Running commit-msg...\033[0m"
 echo ""
 
 npx commitlint --edit
