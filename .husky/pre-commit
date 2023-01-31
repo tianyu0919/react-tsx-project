@@ -5,4 +5,7 @@ echo ""
 echo "\033[1;36m🐑🐑🐑 Running pre-commit...\033[0m"
 echo ""
 
+# 执行test.sh
+# . "$(dirname  -- .)/test.sh"
+
 npx pretty-quick --staged; npx lint-staged
