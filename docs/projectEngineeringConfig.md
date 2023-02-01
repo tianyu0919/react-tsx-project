@@ -6,7 +6,7 @@
 
 ## [lint-staged](https://github.com/okonet/lint-staged#readme)
 
-简述：<b>只会检测暂存区的文件</b>，配合 `husky` 使用，在提交 `commit` 的时候触发 `husky` 的 `pre-commit` 钩子，执行 `npx lint-staged` 用来检查代码，需要配置验证者，例如 `eslint`、`prettier` 等。
+简述：**只会检测暂存区的文件**，配合 `husky` 使用，在提交 `commit` 的时候触发 `husky` 的 `pre-commit` 钩子，执行 `npx lint-staged` 用来检查代码，需要配置验证者，例如 `eslint`、`prettier` 等。
 
 例子：在 <kbd>package.json</kbd> 中添加一个配置字段，或者添加新的文件，如下是添加字段的方式。
 
