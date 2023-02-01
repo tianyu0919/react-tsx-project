@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['@commitlint/config-conventional'],
-  helpUrl: 'https://www.baidu.com',
+  helpUrl: 'https://commitlint.js.org/#/reference-configuration',
   rules: {
     // "type-enum": [2, 'always', ['傻逼', '一贤']]
     // "scope-enum": [2, 'always', ['body']]

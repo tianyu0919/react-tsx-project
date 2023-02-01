@@ -1,7 +1,7 @@
 /*
  * @Author: 归宿
  * @Date: 2023-01-09 17:10:28
- * @Description: 
+ * @Description:
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -19,14 +19,15 @@ module.exports = {
   output: {
     path: PATH.resolve(__dirname, '../dist'),
     filename: '[name].bundle.js',
-    clean: true,
+    clean: true
   },
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx']
   },
   devServer: {
     client: {
-      overlay: { // * 用来显示报错的
+      overlay: {
+        // * 用来显示报错的
         errors: true,
         warnings: false
       }
@@ -52,11 +53,7 @@ module.exports = {
       },
       {
         test: /\.(le|c)ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'less-loader'
-        ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
       },
       {
         test: /\.gif$/,
@@ -70,24 +67,23 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [
-      new CssMinimizerPlugin(),
-    ]
+    minimizer: [new CssMinimizerPlugin()]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: PATH.resolve(__dirname, "../public/index.html")
+      template: PATH.resolve(__dirname, '../public/index.html')
     }),
-    new ESLintPlugin({ // * eslint 插件
-      extensions: ['.js', '.ts', '.jsx', '.tsx'],
+    new ESLintPlugin({
+      // * eslint 插件
+      extensions: ['.js', '.ts', '.jsx', '.tsx']
       // fix: true
     }),
     new ForkTsCheckerWebpackPlugin(), // * 检查 ts 语法错误，全屏显示错误信息
     new MiniCssExtractPlugin(),
     new ReactRefreshWebpackPlugin() // * react 的热更新插件
   ]
-}
+};
 
 // * eslint 跟 fork-ts-checker-webpack-plugin 的区别：
-// * eslint: 根据你的eslint 配置文件，检查你的代码规范问题。报错全屏是否显示信息在 webpack 的 devServer > client > overlay 中配置。
-// * fork-ts-checker-webpack-plugin：检查你的 ts 语法错误。如果有类型或者语法错误则在运行阶段就会全屏报错。 
+// * eslint: 根据你的eslint 配置文件，检查你的代码规范问题。报错全屏是否显示信息在 webpack 的 devServer.client.overlay 中配置。
+// * fork-ts-checker-webpack-plugin：检查你的 ts 语法错误。如果有类型或者语法错误则在运行阶段就会全屏报错。
