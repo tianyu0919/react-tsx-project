@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --config ./config/webpack.config.dev.js",
-    "build": "webpack --config ./config/webpack.config.pro.js"
+    "build": "webpack --config ./config/webpack.config.pro.js",
+    "tsc": "rm -rf dist-ts && tsc"
   },
   "author": "",
   "license": "ISC",

@@ -12,7 +12,7 @@ module.exports = {
   },
   ignorePatterns: ['src/TestDemo/**/*', '*.test.ts', 'dist'], // * 忽略项，不检查什么文件
   extends: [
-    // 'eslint:recommended', // * eslint 本身的集成
+    'eslint:recommended', // * eslint 本身的集成
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended' // * typescript-eslint 的集成 跟 eslint是两个东西
     // "standard",

@@ -1,4 +1,4 @@
 node_modules
 dist
 # __local/**/*
-__local_tsCompile
+dist-ts
