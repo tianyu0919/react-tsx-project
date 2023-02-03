@@ -1,4 +1,4 @@
 node_modules
-
-__local/**/*
-__local*
+dist
+# __local/**/*
+__local_tsCompile
