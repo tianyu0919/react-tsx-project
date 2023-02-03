@@ -2,7 +2,7 @@
 
 ## [husky](https://typicode.github.io/husky/)
 
-简述：在提交 `git` 的时候触发一些 `git` 的钩子(生命周期），例如在提交  `commit` 之前触发一个 `pre-commit` 生命周期进行代码格式和规范的整理。在 `commit` 的时候查看提交的文本是否符合描述
+简述：在提交 `git` 的时候触发一些 `git` 的钩子(生命周期），例如在提交 `commit` 之前触发一个 `pre-commit` 生命周期进行代码格式和规范的整理。在 `commit` 的时候查看提交的文本是否符合描述
 
 ## [lint-staged](https://github.com/okonet/lint-staged#readme)
 
