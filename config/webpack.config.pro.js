@@ -8,6 +8,5 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   ...baseConfig,
-  mode: 'production',
   plugins: [...baseConfig.plugins, new BundleAnalyzerPlugin()]
 };

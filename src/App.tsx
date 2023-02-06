@@ -7,6 +7,8 @@ import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import DocView from './TestDemo/DocView';
 import Tree from './TestDemo/Tree';
+import { Button } from "@douyinfe/semi-ui"
+import "@douyinfe/semi-ui/dist/css/semi.min.css"
 
 import './App.less';
 
@@ -17,10 +19,23 @@ function a(): boolean {
 
 export default function App() {
   const [num, setNum] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  async function add() {
+    setLoading(true);
+    await new Promise(resolve => {
+      setTimeout(() => {
+        setLoading(false);
+        console.log('xx');
+        resolve('xxxx');
+      }, 3000);
+    })
+  } 
 
   return (
     <>
       <div className={classnames({ container: true })}>
+        <Button theme='solid' onClick={add} loading={loading}>点击</Button>
         <div>
           Hello Word<span>欢迎</span>
         </div>

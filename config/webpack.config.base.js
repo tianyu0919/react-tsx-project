@@ -13,6 +13,7 @@ console.log(isDevelopment);
 
 module.exports = {
   entry: PATH.resolve(__dirname, '../src/index.tsx'),
+  target: isDevelopment ? 'development': 'production',
   target: ['web', 'es5'],
   output: {
     path: PATH.resolve(__dirname, '../dist'),
@@ -38,7 +39,14 @@ module.exports = {
       },
       {
         test: /\.(le|c)ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        exclude: /node_modules/,
+      },
+      {
+        include: /node_modules/,
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+        exclude: /src/
       },
       {
         test: /\.gif$/i,
