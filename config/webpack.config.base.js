@@ -8,12 +8,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const PATH = require('path');
 const isDevelopment = process.env.NODE_ENV;
+const { VueLoaderPlugin } = require('vue-loader');
 
 console.log(isDevelopment);
 
 module.exports = {
   entry: PATH.resolve(__dirname, '../src/index.tsx'),
-  target: isDevelopment ? 'development': 'production',
+  mode: isDevelopment ? 'development' : 'production',
   target: ['web', 'es5'],
   output: {
     path: PATH.resolve(__dirname, '../dist'),
@@ -21,7 +22,10 @@ module.exports = {
     clean: true
   },
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx']
+    alias: {
+      src: PATH.resolve(__dirname, '../src')
+    },
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.vue']
   },
   module: {
     rules: [
@@ -38,9 +42,13 @@ module.exports = {
         ]
       },
       {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
         test: /\.(le|c)ss$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         include: /node_modules/,
@@ -48,6 +56,12 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
         exclude: /src/
       },
+      // {
+      //   include: /src/,
+      //   test: /\.css$/i,
+      //   use: ['vue-style-loader', 'css-loader'],
+      //   exclude: /node_modules/
+      // },
       {
         test: /\.gif$/i,
         type: 'asset/inline'
@@ -78,6 +92,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
-    })
+    }),
+    new VueLoaderPlugin()
   ]
 };

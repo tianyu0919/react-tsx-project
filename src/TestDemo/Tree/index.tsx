@@ -44,7 +44,7 @@ function formatJson(jsonArr: JSONType[][]) {
     }
     if (treeObjSimple) {
       treeArr.push(treeObjSimple);
-      console.log(treeObjSimple);
+      // console.log(treeObjSimple);
     }
   });
 }
@@ -65,7 +65,7 @@ function sliceArrFn(findEle: number, sourceArr: JSONType[]): JSONType[][] {
     let endIdx = arr[i] + 1;
 
     let tempArr = endIdx ? sourceArr.slice(arr[i], arr[i + 1]) : sourceArr.slice(arr[i]);
-    console.log(tempArr);
+    // console.log(tempArr);
 
     let notLevelZero = tempArr.filter((item) => item.level !== -1);
     sliceArr.push(notLevelZero);
@@ -79,13 +79,14 @@ function sliceArrFn(findEle: number, sourceArr: JSONType[]): JSONType[][] {
 export default function Tree() {
   useEffect(() => {
     const sliceArr = sliceArrFn(0, json);
-    console.log(sliceArr);
+    // console.log('重新渲染了 Tree');
+    // console.log(sliceArr);
     formatJson(sliceArr);
   }, []);
 
   return (
     <div>
-      Tree
+      <h2>Tree</h2>
       <JSONView src={json} />
     </div>
   );
