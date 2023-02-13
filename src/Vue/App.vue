@@ -1,8 +1,8 @@
 <template>
   <div class="App">
     <h1>{{ msg }} {{ num }}</h1>
-    <button @click="add">增加</button>
-    <button @click="jian">相减</button>
+    <a-Button @click="add">增加</a-Button>
+    <a-Button @click="jian">相减</a-Button>
   </div>
 </template>
 

@@ -6,4 +6,4 @@
 declare module 'react-file-viewer';
 declare module '*.doc';
 declare module '*.json';
-declare module 'src/Vue/*';
+declare module 'src/*';

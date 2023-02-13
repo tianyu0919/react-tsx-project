@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>{{ msg }}</h2>
+    <a-Button>Hello</a-Button>
   </div>
 </template>
 

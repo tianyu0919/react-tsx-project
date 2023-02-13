@@ -5,14 +5,12 @@
  */
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
-import DocView from './TestDemo/DocView';
-import Tree from './TestDemo/Tree';
-import { ButtonGroup, Button } from '@douyinfe/semi-ui';
+import { Button } from 'antd';
 import './App.less';
 import VueDemo from './TestDemo/VueDemo';
+import { BrowserRouter, Outlet } from 'react-router-dom';
 
 export default function App(): React.ReactElement {
-  const [num, setNum] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
   async function add() {
@@ -27,36 +25,14 @@ export default function App(): React.ReactElement {
   }
 
   return (
-    <>
+    <BrowserRouter>
       <div className={classnames({ container: true })}>
-        <Button theme="solid" onClick={add} loading={loading}>
+        <Button onClick={add} loading={loading}>
           点击
         </Button>
-        {/* <div>{num}</div>
-        <div>
-          <ButtonGroup>
-            <Button
-              size="small"
-              onClick={() => {
-                setNum(num - 1);
-              }}
-            >
-              -
-            </Button>
-            <Button
-              size="small"
-              onClick={() => {
-                setNum(num + 1);
-              }}
-            >
-              +
-            </Button>
-          </ButtonGroup> */}
-        {/* </div> */}
         <VueDemo />
-        {/* <Tree /> */}
-        {/* <DocView /> */}
       </div>
-    </>
+      <Outlet />
+    </BrowserRouter>
   );
 }

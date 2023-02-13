@@ -1,4 +1,6 @@
 import { createApp, App } from 'vue';
+import antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
 
 type rootType = string | Element;
 
@@ -33,6 +35,8 @@ class VueRender {
       // * 如果存在了，则不做任何操作。
       console.log('component', component);
       const vueInstance = createApp(component);
+
+      vueInstance.use(antd);
 
       const unmount = vueInstance.unmount;
 
