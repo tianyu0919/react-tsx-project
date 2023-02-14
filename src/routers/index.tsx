@@ -15,17 +15,18 @@ const routers: RoutesTypes[] = [
     component: <RouterMiddleware path={'App'} />,
     children: [
       {
-        path: '/Home',
+        path: '/home',
         index: true,
         component: <RouterMiddleware path={'views/Home'} />,
         children: [
           {
-            path: '/Home/me',
+            path: '/home/me',
             component: <RouterMiddleware component={<div>Hello Me</div>} />
-          }
+          },
+          { path: '/home/*', component: <RouterMiddleware component={<div>home 404 not found</div>} /> }
         ]
       },
-      { path: '/About', component: <RouterMiddleware path={'views/About'} /> }
+      { path: '/about', component: <RouterMiddleware path={'views/About'} /> }
     ]
   },
   {
