@@ -8,10 +8,11 @@ import classnames from 'classnames';
 import { Button } from 'antd';
 import './App.less';
 import VueDemo from './TestDemo/VueDemo';
-import { BrowserRouter, Outlet } from 'react-router-dom';
+import { BrowserRouter, Outlet, Router, useNavigate } from 'react-router-dom';
 
 export default function App(): React.ReactElement {
   const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   async function add() {
     setLoading(true);
@@ -25,14 +26,28 @@ export default function App(): React.ReactElement {
   }
 
   return (
-    <BrowserRouter>
+    <>
       <div className={classnames({ container: true })}>
         <Button onClick={add} loading={loading}>
           点击
         </Button>
-        <VueDemo />
+        <Button
+          onClick={() => {
+            navigate('/home');
+          }}
+        >
+          Home
+        </Button>
+        <Button
+          onClick={() => {
+            navigate('/about');
+          }}
+        >
+          About
+        </Button>
+        {/* <VueDemo /> */}
       </div>
       <Outlet />
-    </BrowserRouter>
+    </>
   );
 }

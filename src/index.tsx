@@ -7,9 +7,16 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 // import '@douyinfe/semi-ui/dist/css/semi.min.css';
 import 'antd/dist/reset.css';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
+import { Routers } from 'src/routers';
+import 'nprogress/nprogress.css';
 
 import App from './App';
 
 const container = document.querySelector('#root');
 const root = createRoot(container!);
-root.render(<App />);
+root.render(
+  <HashRouter>
+    <Routers />
+  </HashRouter>
+);

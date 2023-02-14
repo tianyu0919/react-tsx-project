@@ -70,7 +70,8 @@ module.exports = {
         test: /\.(ttf|eot|svg)$/i,
         type: 'asset/resource',
         generator: {
-          outputPath: 'fonts'
+          outputPath: 'fonts',
+          publicPath: 'fonts/'
         }
       },
       {
