@@ -14,7 +14,17 @@ const routers: RoutesTypes[] = [
     path: '/',
     component: <RouterMiddleware path={'App'} />,
     children: [
-      { path: '/Home', index: true, component: <RouterMiddleware path={'views/Home'} /> },
+      {
+        path: '/Home',
+        index: true,
+        component: <RouterMiddleware path={'views/Home'} />,
+        children: [
+          {
+            path: '/Home/me',
+            component: <RouterMiddleware component={<div>Hello Me</div>} />
+          }
+        ]
+      },
       { path: '/About', component: <RouterMiddleware path={'views/About'} /> }
     ]
   },
@@ -30,6 +40,17 @@ function LazyComponent(): any {
   return <div>loading...</div>;
 }
 
+console.log('hahahah');
+const com = (
+  <Route path="/">
+    <Route path="/a"></Route>
+  </Route>
+);
+console.log(com.props);
+const R1 = (<Route path="/"></Route>) as any;
+console.log(R1);
+// R1.children = <Route path='/a'></Route>
+
 // * router 中间件 用来显示 nProgress
 function RouterMiddleware({ path, component }: any): React.ReactElement {
   let Component = null;
@@ -41,7 +62,7 @@ function RouterMiddleware({ path, component }: any): React.ReactElement {
           setTimeout(() => {
             nprogress.done();
             resolve(res);
-          }, 3000);
+          }, 1000);
         });
       });
     });
@@ -60,29 +81,38 @@ function RouterMiddleware({ path, component }: any): React.ReactElement {
   );
 }
 
-function RouteWithSubRoutes(route: RoutesTypes): any {
-  const { path, component, index = false, children } = route;
-  const RouteComponent: any = <Route index={index} path={path} element={component} />;
-
-  if (children) {
-    RouteComponent.children = RouteWithSubRoutes(route);
+function RouteWithSubRoutes(route: RoutesTypes, key?: string): any {
+  const { path, component, children } = route;
+  if (!children) {
+    return <Route key={key} index path={path} element={component} />;
+  } else {
+    return (
+      <Route key={key} path={path} element={component}>
+        {children ? children.map((child) => RouteWithSubRoutes(child, child.path)) : undefined}
+      </Route>
+    );
   }
-
-  return RouteComponent;
 }
 
 export function Routers(): React.ReactElement {
+  const RouteComponents = routers.map((item) => {
+    return RouteWithSubRoutes(item, item.path);
+  });
+
+  console.log(RouteComponents);
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<RouterMiddleware path={'App'} />}>
+        {/* <Route path="/" element={<RouterMiddleware path={'App'} />}>
           <Route index element={<div>Hello World</div>} />
           <Route path="/home" element={<RouterMiddleware path={'views/Home'} />}>
             <Route path="/home/me" element={<div>Home Me</div>} />
           </Route>
           <Route path="/about" element={<RouterMiddleware path={'views/About'} />} />
           <Route path="*" element={<RouterMiddleware component={<div>404 notFound</div>} />} />
-        </Route>
+        </Route> */}
+        {RouteComponents}
       </Routes>
     </>
   );
