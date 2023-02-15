@@ -12,9 +12,11 @@ import { Routers } from 'src/routers';
 import 'nprogress/nprogress.css';
 
 import App from './App';
+import Demo from './Demo';
 
 const container = document.querySelector('#root');
 const root = createRoot(container!);
+// root.render(<Demo />)
 root.render(
   <HashRouter>
     <Routers />

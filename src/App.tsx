@@ -8,26 +8,35 @@ import classnames from 'classnames';
 import { Button } from 'antd';
 import './App.less';
 import VueDemo from './TestDemo/VueDemo';
-import { BrowserRouter, Outlet, Router, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 export default function App(): React.ReactElement {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   async function add() {
     setLoading(true);
     await new Promise((resolve) => {
       setTimeout(() => {
         setLoading(false);
-        console.log('xx');
         resolve('xxxx');
       }, 3000);
     });
   }
 
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
+
   return (
     <>
       <div className={classnames({ container: true })}>
+        <div className={classnames({ breadCrumbs: true })}>
+          <div>home</div>
+          <span>/</span>
+          <div>about</div>
+        </div>
         <Button onClick={add} loading={loading}>
           点击
         </Button>
@@ -45,7 +54,7 @@ export default function App(): React.ReactElement {
         >
           About
         </Button>
-        {/* <VueDemo /> */}
+        <VueDemo />
       </div>
       <Outlet />
     </>

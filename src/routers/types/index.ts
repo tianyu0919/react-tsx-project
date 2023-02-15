@@ -1,5 +1,5 @@
 export interface RoutesTypes {
-  path: string;
+  path?: string;
   component: any;
   index?: boolean;
   children?: RoutesTypes[];
