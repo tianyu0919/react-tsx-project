@@ -36,7 +36,9 @@ export default function App(): React.ReactElement {
         return routersMap[pname];
       }
     });
-
+    if (!o) {
+      return <></>;
+    }
     return (
       <>
         <span>/</span>
