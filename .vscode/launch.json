@@ -1,22 +1,12 @@
 {
-  // 使用 IntelliSense 了解相关属性。
-  // 悬停以查看现有属性的描述。
-  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "name": "Launch Chrome",
       "request": "launch",
-      "name": "启动程序",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-      // "program": "${workspaceFolder}/node_modules/.pnpm/webpack-dev-server@4.11.1_rjsyjcrmk25kqsjzwkvj3a2evq/node_modules/webpack-dev-server/lib/Server.js",
-      "outFiles": ["${workspaceFolder}/**/*.js"],
-      // "env": {
-      //   "NODE_ENV": "development",
-      //   "config": "../config/webpack.config.dev.js"
-      // },
-      "args": ["NODE_ENV=development", "config='/config/webpack.config.dev.js'"]
+      "type": "chrome",
+      "url": "http://localhost:9001",
+      "webRoot": "${workspaceFolder}",
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }

@@ -16,9 +16,9 @@ import Demo from './Demo';
 
 const container = document.querySelector('#root');
 const root = createRoot(container!);
-// root.render(<Demo />)
-root.render(
-  <HashRouter>
-    <Routers />
-  </HashRouter>
-);
+root.render(<Demo />);
+// root.render(
+//   <HashRouter>
+//     <Routers />
+//   </HashRouter>
+// );
