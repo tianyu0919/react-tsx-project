@@ -1,6 +1,8 @@
 <template>
   <div class="App">
-    <h1>{{ msg }} {{ num }}</h1>
+    <h1>
+      {{ msg }} <span class="app-color">{{ num }}</span>
+    </h1>
     <a-Button @click="add">增加</a-Button>
     <a-Button @click="jian">相减</a-Button>
   </div>
@@ -29,6 +31,10 @@ export default {
   border: 1px solid red;
   h1 {
     color: orange;
+  }
+
+  .app-color {
+    color: blue;
   }
 }
 </style>

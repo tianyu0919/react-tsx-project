@@ -37,6 +37,8 @@ export default function App(): React.ReactElement {
           <span>/</span>
           <div>about</div>
         </div>
+        <h2 className={classnames('app-color')}>我是 React 的app-color</h2>
+
         <Button onClick={add} loading={loading}>
           点击
         </Button>
