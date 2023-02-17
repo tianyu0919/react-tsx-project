@@ -56,7 +56,7 @@ export default function App(): React.ReactElement {
         >
           About
         </Button>
-        <VueDemo />
+        {/* <VueDemo /> */}
       </div>
       <Outlet />
     </>
