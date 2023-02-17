@@ -9,6 +9,8 @@ import { Button } from 'antd';
 import './App.less';
 import VueDemo from './TestDemo/VueDemo';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { routersMap } from './routers';
+import { pathToRegexp } from 'path-to-regexp';
 
 export default function App(): React.ReactElement {
   const [loading, setLoading] = useState<boolean>(false);
@@ -24,6 +26,42 @@ export default function App(): React.ReactElement {
       }, 3000);
     });
   }
+  const pathSnippets = location.pathname.split('/').filter((i) => i);
+
+  const extraBreadcrumbItems = pathSnippets.map((_, idx) => {
+    const url = `/${pathSnippets.slice(0, idx + 1).join('/')}`;
+    const [o] = Object.keys(routersMap).filter((pname) => {
+      const pathReg = pathToRegexp(pname);
+      if (pathReg.test(url)) {
+        return routersMap[pname];
+      }
+    });
+
+    return (
+      <>
+        <span>/</span>
+        <div
+          key={url}
+          onClick={() => {
+            navigate(url);
+          }}
+        >
+          {routersMap[o]}
+        </div>
+      </>
+    );
+  });
+
+  const breadcrumbItems = [
+    <div
+      key="/"
+      onClick={() => {
+        navigate('/');
+      }}
+    >
+      Mi
+    </div>
+  ].concat(extraBreadcrumbItems);
 
   useEffect(() => {
     console.log(location);
@@ -32,11 +70,7 @@ export default function App(): React.ReactElement {
   return (
     <>
       <div className={classnames({ container: true })}>
-        <div className={classnames({ breadCrumbs: true })}>
-          <div>home</div>
-          <span>/</span>
-          <div>about</div>
-        </div>
+        <div className={classnames({ breadCrumbs: true })}>{breadcrumbItems}</div>
         <h2 className={classnames('app-color')}>我是 React 的app-color</h2>
 
         <Button onClick={add} loading={loading}>

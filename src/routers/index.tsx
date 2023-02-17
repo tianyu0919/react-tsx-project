@@ -51,7 +51,7 @@ export const routers: RoutesTypes[] = [
           // { path: '/home/*', component: <RouterMiddleware component={<div>home 404 not found</div>} /> }
         ]
       },
-      { path: '/about', element: <RouterMiddleware path={'views/About'} /> }
+      { path: '/about', name: 'About', element: <RouterMiddleware path={'views/About'} /> }
     ]
   },
   {
@@ -59,6 +59,8 @@ export const routers: RoutesTypes[] = [
     element: <RouterMiddleware component={<div>404 notFound</div>} />
   }
 ];
+
+export const routersMap: { [protoName: string]: string } = {};
 
 // * 加载组件时的 loading
 function LazyComponent(): any {
@@ -106,7 +108,10 @@ function RouterMiddleware({ path, component }: any): React.ReactElement {
 
 // * 渲染 路由 结构
 function RouteWithSubRoutes(route: RoutesTypes, key?: string | number | undefined): any {
-  const { path, element, children } = route;
+  const { path, element, children, name } = route;
+  if (path && name && !routersMap[path]) {
+    routersMap[path] = name;
+  }
   // const keys = key === '*' ? `${key}_1` : key;
   // console.log(key);
   if (!children) {
