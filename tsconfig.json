@@ -7,7 +7,8 @@
   "exclude": ["**/*.test.ts", "node_modules/**/*"],
   "compilerOptions": {
     "paths": {
-      "src/*": ["src/*"]
+      "src/*": ["src/*"],
+      "components/*": ["src/components/*"]
     },
     /* Visit https://aka.ms/tsconfig to read more about this file */
     /* Projects */

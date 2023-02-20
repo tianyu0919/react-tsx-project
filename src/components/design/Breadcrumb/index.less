@@ -1,0 +1,45 @@
+.BreadcrumbsContainer {
+  color: rgba(0, 0, 0, 0.45);
+  user-select: none;
+  font-size: 14px;
+
+  ol {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    li {
+      height: 22px;
+      line-height: 22px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .breadcrumb-link {
+        .breadcrumb-item {
+          transition: color 0.2s ease 0s;
+          padding: 0px 4px;
+          cursor: pointer;
+          border-radius: 4px;
+
+          &:hover {
+            color: rgba(0, 0, 0, 0.88);
+            background-color: rgba(0, 0, 0, 0.06);
+          }
+        }
+      }
+
+      .breadcrumb-separator {
+        margin: 0px 4px;
+      }
+
+      &:last-child {
+        color: rgba(0, 0, 0, 0.88);
+      }
+
+      &:last-child > .breadcrumb-separator {
+        display: none;
+      }
+    }
+  }
+}

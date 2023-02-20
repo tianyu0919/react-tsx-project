@@ -26,9 +26,18 @@
     align-items: center;
     justify-content: flex-start;
     column-gap: 3px;
+    font-family: 'Archivo';
 
-    div {
+    .breadCrumbs_item {
+      column-gap: 6px;
       padding: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .breadCrumbs_item_name {
+        cursor: pointer;
+      }
       // border: 1px solid #ccc;
       // border-radius: 3px;
     }

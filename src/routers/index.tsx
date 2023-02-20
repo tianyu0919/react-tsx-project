@@ -8,10 +8,10 @@
  * @Date: 2023-02-10 10:29:11
  * @Description: 路由配置
  */
-import React, { Suspense, lazy, ComponentType, useState, useEffect } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Route, Routes, Outlet } from 'react-router-dom';
-import { RoutesTypes } from './types';
-import nprogress from 'nProgress';
+import { RoutesTypes, RouterMiddlewareTypes } from './types';
+import nProgress from 'nProgress';
 
 export const routers: RoutesTypes[] = [
   {
@@ -48,7 +48,6 @@ export const routers: RoutesTypes[] = [
               { path: '*', element: <div>not not</div> }
             ]
           }
-          // { path: '/home/*', component: <RouterMiddleware component={<div>home 404 not found</div>} /> }
         ]
       },
       { path: '/about', name: 'About', element: <RouterMiddleware path={'views/About'} /> }
@@ -63,22 +62,21 @@ export const routers: RoutesTypes[] = [
 export const routersMap: { [protoName: string]: string } = {};
 
 // * 加载组件时的 loading
-function LazyComponent(): any {
-  nprogress.start();
+function LazyComponent(): React.ReactElement {
+  nProgress.start();
   return <div>loading...</div>;
 }
 
 // * router 中间件 用来显示 nProgress
-function RouterMiddleware({ path, component }: any): React.ReactElement {
+function RouterMiddleware(props: RouterMiddlewareTypes): React.ReactElement {
+  const { path, component } = props;
   let Component = null;
   if (path) {
     Component = lazy(() => {
       return new Promise((resolve) => {
         import(`src/${path}`).then((res) => {
-          // setTimeout(() => {
-          nprogress.done();
+          nProgress.done();
           resolve(res);
-          // }, 30000);
         });
       });
     });
@@ -89,7 +87,7 @@ function RouterMiddleware({ path, component }: any): React.ReactElement {
           return <>{component}</>;
         } as never;
         setTimeout(() => {
-          nprogress.done();
+          nProgress.done();
           resolve({ default: Ele });
         }, 100);
       });
@@ -112,8 +110,7 @@ function RouteWithSubRoutes(route: RoutesTypes, key?: string | number | undefine
   if (path && name && !routersMap[path]) {
     routersMap[path] = name;
   }
-  // const keys = key === '*' ? `${key}_1` : key;
-  // console.log(key);
+
   if (!children) {
     return <Route key={`${key}`} index path={path} element={element} />;
   } else {
@@ -136,17 +133,7 @@ export function Routers(): React.ReactElement {
 
   return (
     <>
-      <Routes>
-        {/* <Route path="/" element={<RouterMiddleware path={'App'} />}>
-          <Route index element={<div>Hello World</div>} />
-          <Route path="/home" element={<RouterMiddleware path={'views/Home'} />}>
-            <Route path="/home/me" element={<div>Home Me</div>} />
-          </Route>
-          <Route path="/about" element={<RouterMiddleware path={'views/About'} />} />
-          <Route path="*" element={<RouterMiddleware component={<div>404 notFound</div>} />} />
-        </Route> */}
-        {RouteComponents}
-      </Routes>
+      <Routes>{RouteComponents}</Routes>
     </>
   );
 }

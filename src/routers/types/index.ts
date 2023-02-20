@@ -5,3 +5,7 @@ export interface RoutesTypes {
   name?: string;
   children?: RoutesTypes[];
 }
+export interface RouterMiddlewareTypes {
+  path?: string;
+  component?: JSX.Element;
+}

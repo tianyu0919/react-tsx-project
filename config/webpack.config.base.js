@@ -23,7 +23,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      src: PATH.resolve(__dirname, '../src')
+      src: PATH.resolve(__dirname, '../src'),
+      components: PATH.resolve(__dirname, '../src/components')
     },
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.vue']
   },
