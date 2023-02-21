@@ -5,7 +5,7 @@
  */
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import './App.less';
 import VueDemo from './TestDemo/VueDemo';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
@@ -13,11 +13,13 @@ import { routersMap } from './routers';
 import { pathToRegexp } from 'path-to-regexp';
 import { Breadcrumbs } from 'components/design';
 import mime from 'mime';
+import { useSyncState } from './hooks';
 
 export default function App(): React.ReactElement {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const [num, setNum] = useSyncState(1);
 
   async function add() {
     setLoading(true);
@@ -79,23 +81,33 @@ export default function App(): React.ReactElement {
           <Breadcrumbs>{breadcrumbItems}</Breadcrumbs>
         </div>
         <h2 className={classnames('app-color')}>我是 React 的app-color</h2>
-        <Button onClick={add} loading={loading}>
-          点击
-        </Button>
-        <Button
-          onClick={() => {
-            navigate('/home');
-          }}
-        >
-          Home
-        </Button>
-        <Button
-          onClick={() => {
-            navigate('/about');
-          }}
-        >
-          About
-        </Button>
+        <Space>
+          <Button onClick={add} loading={loading}>
+            点击
+          </Button>
+          <Button
+            onClick={() => {
+              setNum(num + 1);
+              console.log(num);
+            }}
+          >
+            同步State---{num}
+          </Button>
+          <Button
+            onClick={() => {
+              navigate('/home');
+            }}
+          >
+            Home
+          </Button>
+          <Button
+            onClick={() => {
+              navigate('/about');
+            }}
+          >
+            About
+          </Button>
+        </Space>
         {/* <VueDemo /> */}
       </div>
       <Outlet />

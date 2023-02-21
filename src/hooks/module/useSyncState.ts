@@ -7,19 +7,22 @@ import { useRef } from 'react';
 import forceUpdate from './useForceUpdate';
 
 type Dispatch<T> = (state: T) => void;
-type SetStateAction<T> = T | ((preState: T) => T);
+type SetStateFunTypeAction<T> = (preState: T) => T;
+type SetStateAction<T> = T | SetStateFunTypeAction<T>;
 
 type UseSyncStateProps<T> = readonly [T, Dispatch<SetStateAction<T>>];
 
 function useSyncState<T>(initialValue: T): UseSyncStateProps<T> {
   const ref = useRef<T>(initialValue);
+  console.log('xx');
 
   return [
     ref.current,
     (state: SetStateAction<T>): void => {
       const oldState = ref.current;
+      console.log('xx111');
       if (typeof state === 'function') {
-        ref.current = state(oldState);
+        ref.current = (state as SetStateFunTypeAction<T>)(oldState);
       } else {
         ref.current = state;
       }
@@ -29,8 +32,3 @@ function useSyncState<T>(initialValue: T): UseSyncStateProps<T> {
 }
 
 export default useSyncState;
-
-const [num, setNum] = useSyncState(1);
-
-setNum((state) => state + 1);
-setNum(1);
