@@ -87,11 +87,11 @@ export default function App(): React.ReactElement {
           </Button>
           <Button
             onClick={() => {
-              setNum(num + 1);
-              console.log(num);
+              setNum((oldState) => oldState + 1);
+              console.log(num());
             }}
           >
-            同步State---{num}
+            同步State---{num()}
           </Button>
           <Button
             onClick={() => {

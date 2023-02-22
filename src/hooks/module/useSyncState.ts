@@ -4,23 +4,26 @@
  * @Description: 同步 state
  */
 import { useRef } from 'react';
-import forceUpdate from './useForceUpdate';
+import useForceUpdate from './useForceUpdate';
 
 type Dispatch<T> = (state: T) => void;
 type SetStateFunTypeAction<T> = (preState: T) => T;
 type SetStateAction<T> = T | SetStateFunTypeAction<T>;
+type UseSyncStateProps<T> = readonly [() => T, Dispatch<SetStateAction<T>>];
 
-type UseSyncStateProps<T> = readonly [T, Dispatch<SetStateAction<T>>];
-
+/**
+ * 自定义 hook --- 同步 state
+ * @param initialValue
+ * @returns [getStateFn, SetStateFn]
+ */
 function useSyncState<T>(initialValue: T): UseSyncStateProps<T> {
   const ref = useRef<T>(initialValue);
-  console.log('xx');
+  const forceUpdate = useForceUpdate();
 
   return [
-    ref.current,
+    (): T => ref.current,
     (state: SetStateAction<T>): void => {
       const oldState = ref.current;
-      console.log('xx111');
       if (typeof state === 'function') {
         ref.current = (state as SetStateFunTypeAction<T>)(oldState);
       } else {
