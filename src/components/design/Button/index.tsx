@@ -4,11 +4,25 @@
  * @Description:
  */
 import React from 'react';
+import classnames from 'classnames';
+import { ButtonProps } from './types';
 
-const Button = (props: any): React.ReactElement => {
+const Button = (props: ButtonProps): React.ReactElement => {
+  const { type = 'default', children, onClick: clickHandler, size = 'middle' } = props;
+  console.log(props);
   return (
     <>
-      <button></button>
+      <button
+        type="button"
+        className={classnames('btn', `btn-${type}`, `btn`)}
+        onClick={(e): void => {
+          if (clickHandler) {
+            clickHandler(e);
+          }
+        }}
+      >
+        {children}
+      </button>
     </>
   );
 };
