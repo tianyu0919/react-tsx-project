@@ -1,0 +1,25 @@
+.layer-mask {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  will-change: opacity;
+  z-index: 99;
+  background-color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.layer-content {
+  border: 1px solid #ccc;
+  background-color: red;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1) !important;
+  transform: scale(1);
+}
+
+.layer-body {
+  .layer-mask {
+    opacity: 1;
+  }
+}
