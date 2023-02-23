@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
+/*
+ * @Author: 卢天宇
+ * @Date: 2023-02-23 21:35:28
+ * @Description:
+ */
+import React, { useEffect, memo } from 'react';
 import { Button } from 'antd';
 import { useNavigate, Outlet } from 'react-router-dom';
 import './index.less';
 import { layer, openImgMask } from 'src/utils/layer';
 
-export default function Home() {
+const Home = function Home() {
   const navigate = useNavigate();
   useEffect(() => {
     openImgMask('.imgMask');
@@ -49,4 +54,6 @@ export default function Home() {
       <Outlet />
     </>
   );
-}
+};
+
+export default memo(Home);

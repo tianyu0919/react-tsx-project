@@ -114,7 +114,7 @@ export function openImgMask(selector: string): void {
       const target = ev.target as HTMLElement;
       if (target) {
         const { offsetWidth, offsetHeight } = target;
-        console.log(target.offsetLeft);
+        console.log(target.offsetTop);
         if (offsetWidth > offsetHeight) {
           multiple = docWidth / offsetWidth;
           open(multiple, target);
