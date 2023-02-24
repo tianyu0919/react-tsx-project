@@ -80,16 +80,19 @@ function open(multiple: number, target: HTMLElement, type: 'Horizontal' | 'Verti
   const top = offsetTop - document.documentElement.scrollTop;
   const left = offsetLeft - document.documentElement.scrollLeft;
   const halfWidth = (multiple * offsetWidth - offsetWidth) / 2;
-  const translateX = (offsetWidth - halfWidth) / multiple;
-  console.log(multiple, halfWidth, translateX);
-  console.log(halfWidth / multiple);
+  const halfHeight = (multiple * offsetHeight - offsetHeight) / 2;
+  const translateX = (left - halfWidth) / multiple;
+  const translateY = (top - halfHeight) / multiple - (multiple * offsetHeight) / 2 / multiple;
 
+  console.group('centerTop');
+  console.log(`top: ${top}; halfHeight: ${halfHeight}`);
+  console.groupEnd();
   createMask();
   const content = document.createElement(tagName);
   document.body.appendChild(content);
   setTimeout(() => {
     content.style.cssText = `
-      transform: scale(${multiple}) translate3d(-${translateX}px, ${0}px, 0px); 
+      transform: scale(${multiple}) translate3d(-${translateX}px, ${-translateY}px, 0px); 
       position: fixed; 
       left: ${left}px; top: ${top}px;
       width: ${offsetWidth}px; 
