@@ -82,7 +82,7 @@ function open(multiple: number, target: HTMLElement, type: 'Horizontal' | 'Verti
   const halfWidth = (multiple * offsetWidth - offsetWidth) / 2;
   const halfHeight = (multiple * offsetHeight - offsetHeight) / 2;
   const translateX = (left - halfWidth) / multiple;
-  const translateY = (top - halfHeight) / multiple - (multiple * offsetHeight) / 2 / multiple;
+  const translateY = (top - halfHeight) / multiple - offsetHeight / 2;
 
   console.group('centerTop');
   console.log(`top: ${top}; halfHeight: ${halfHeight}`);
