@@ -76,46 +76,62 @@ function createMask(): void {
 
 function open(multiple: number, target: HTMLElement, type: 'Horizontal' | 'Vertical' = 'Horizontal'): void {
   const { offsetWidth, offsetHeight, offsetLeft, offsetTop, tagName } = target;
-  console.dir(target);
   const top = offsetTop - document.documentElement.scrollTop;
   const left = offsetLeft - document.documentElement.scrollLeft;
   const halfWidth = (multiple * offsetWidth - offsetWidth) / 2;
-  const halfHeight = (multiple * offsetHeight - offsetHeight) / 2;
-  const translateX = (left - halfWidth) / multiple;
-  const translateY = (top - halfHeight) / multiple - offsetHeight / 2;
-
-  console.group('centerTop');
-  console.log(`top: ${top}; halfHeight: ${halfHeight}`);
-  console.groupEnd();
+  const halfHeight = (multiple * offsetHeight - offsetHeight) / 2; // * 放大之后多出来的距离
+  const typeOptions = {
+    Horizontal: {
+      translateX: (left - halfWidth) / multiple,
+      translateY: (top - halfHeight - (window.innerHeight - multiple * offsetHeight) / 2) / multiple
+    },
+    Vertical: {
+      translateX: (left - halfWidth - (window.innerWidth - multiple * offsetWidth) / 2) / multiple,
+      translateY: (top - halfHeight) / multiple
+    }
+  };
   createMask();
-  const content = document.createElement(tagName);
+  const content = document.createElement(tagName) as HTMLImageElement;
   document.body.appendChild(content);
-  setTimeout(() => {
-    content.style.cssText = `
-      transform: scale(${multiple}) translate3d(-${translateX}px, ${-translateY}px, 0px); 
+
+  let transformOptions = null;
+  let style = `
       position: fixed; 
-      left: ${left}px; top: ${top}px;
-      width: ${offsetWidth}px; 
-      height: ${offsetHeight}px; z-index: 100;
+      left: ${left}px; 
+      top: ${top}px;
+      z-index: 100;
     `;
+  if (type === 'Horizontal') {
+    style += `width: ${offsetWidth}px;\n`;
+    transformOptions = typeOptions.Horizontal;
+  } else {
+    style += `height: ${offsetHeight}px;\n`;
+    transformOptions = typeOptions.Vertical;
+  }
+
+  style += `transform: scale(${multiple}) translate3d(${-transformOptions.translateX}px, ${-transformOptions.translateY}px, 0px) \n`;
+  setTimeout(() => {
+    content.style.cssText = style;
   });
   content.classList.add('layer-content');
+  content.src = target.getAttribute('src') || '';
   contentElement = content;
   contentElement.addEventListener('click', () => {
     removeLayer();
   });
 }
 
-export function openImgMask(selector: string): void {
-  const ImgItems = document.querySelectorAll(selector);
+export function openImgLayer(selector: string): void {
+  const ImgItems = document.querySelectorAll(selector) as NodeListOf<HTMLImageElement>;
   let multiple = 0; // * 放大倍数
   ImgItems.forEach((item) => {
+    item.style.cursor = 'zoom-in';
     item.addEventListener('click', (ev: Event) => {
       const docWidth = window.innerWidth;
       const docHeight = window.innerHeight;
 
       const target = ev.target as HTMLElement;
-      if (target) {
+      if (target && target.tagName.toLocaleLowerCase() === 'img') {
         const { offsetWidth, offsetHeight } = target;
         console.log(target.offsetTop);
         if (offsetWidth > offsetHeight) {

@@ -5,7 +5,7 @@
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // * 压缩 css 代码
 const PATH = require('path');
 const isDevelopment = process.env.NODE_ENV;
 const { VueLoaderPlugin } = require('vue-loader');
@@ -14,6 +14,7 @@ console.log(isDevelopment);
 
 module.exports = {
   entry: PATH.resolve(__dirname, '../src/index.tsx'),
+  // entry: PATH.resolve(__dirname, '../src/utils/layer/index.ts'),
   mode: isDevelopment ? 'development' : 'production',
   target: ['web', 'es5'],
   output: {
