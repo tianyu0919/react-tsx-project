@@ -7,7 +7,7 @@ import React, { useEffect, memo } from 'react';
 import { Button } from 'antd';
 import { useNavigate, Outlet } from 'react-router-dom';
 import './index.less';
-import { layer, openImgLayer } from 'src/utils/layer';
+import { openImgLayer } from 'src/utils/layer';
 
 const Home = function Home() {
   const navigate = useNavigate();

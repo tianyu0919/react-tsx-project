@@ -5,40 +5,6 @@
  */
 
 import './index.less';
-class OpenImgMask {
-  type: 'Horizontal' | 'Vertical';
-  multiple: number; // * 放大倍数
-  constructor() {
-    this.type = 'Horizontal';
-    this.multiple = 0;
-  }
-
-  render(selector: string): void {
-    const ImgItems = document.querySelectorAll(selector);
-    ImgItems.forEach((item) => {
-      item.addEventListener('click', (ev: Event) => {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        let type = 'Horizontal';
-
-        const target = ev.target as HTMLElement;
-        if (target) {
-          const { offsetWidth, offsetHeight, offsetLeft, offsetTop, tagName } = target;
-          console.dir(target);
-          console.log(target.offsetLeft);
-          // * 如果宽度小于高度，那么以高度为基准渲染垂直。
-          if (offsetWidth < offsetHeight) {
-            type = 'Vertical';
-          }
-        }
-      });
-    });
-  }
-}
-
-const layer = new OpenImgMask();
-export { layer };
-
 let mask: HTMLDivElement | null = null;
 let contentElement: HTMLElement | null = null;
 
