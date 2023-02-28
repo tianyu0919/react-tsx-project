@@ -6,7 +6,6 @@
 const baseConfig = require('./webpack.config.base');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 // const { ProgressPlugin } = require("webpack");
-const WebpackBar = require('webpackbar');
 
 module.exports = {
   ...baseConfig,
@@ -21,11 +20,6 @@ module.exports = {
     //   dependencies: false,         // 默认true，显示正在进行的依赖项计数消息。
     //   dependenciesCount: 10000,    // 默认10000，开始时的最小依赖项计数。PS:dependencies启用属性时生效。
     // }),
-    new WebpackBar({
-      color: '#1677ff', // * 默认green，进度条颜色支持HEX
-      basic: false, // * 默认为true，启用一个简单的日志报告器
-      profile: false //* 默认为false，启用探查器
-    }),
     new BundleAnalyzerPlugin()
   ]
 };
