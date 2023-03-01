@@ -1,0 +1,126 @@
+.CheckRadioBox {
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+
+  .CheckRadioBox_label {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+
+    &:hover {
+      .CheckRadioBox_left {
+        .checkSpan {
+          border-color: #1677ff;
+        }
+      }
+    }
+
+    .CheckRadioBox_left {
+      justify-content: flex-start;
+      align-items: center;
+
+      input[type='checkbox'],
+      input[type='radio'] {
+        cursor: pointer;
+        position: absolute;
+        z-index: 1;
+        width: 16px;
+        height: 16px;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .checkSpan {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 1px solid #d9d9d9;
+        transition: all 0.3s;
+        position: relative;
+
+        &::before {
+          transition: all 0.3s;
+        }
+      }
+
+      &.checked {
+        .checkSpan {
+          background-color: #1677ff;
+          border-color: #1677ff;
+        }
+      }
+    }
+
+    .CheckRadioBox_content {
+      // padding: 0px 3px;
+      padding-inline-start: 8px; // * 根据书写方式左侧距离。
+      padding-inline-end: 8px;
+      box-sizing: border-box;
+    }
+  }
+
+  // * 复选框
+  &.checkBox {
+    .CheckRadioBox_left {
+      .checkSpan {
+        border-radius: 3px;
+
+        &::before {
+          content: '';
+          border-bottom: 2px solid #fff;
+          border-right: 2px solid #fff;
+          display: inline-block;
+          height: 9px;
+          left: 29%;
+          position: absolute;
+          top: 10%;
+          width: 6px;
+          transform: scale(0) rotate(45deg);
+          opacity: 0;
+        }
+      }
+
+      &.checked {
+        .checkSpan {
+          &::before {
+            transform: scale(1) rotate(45deg);
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  // * 单选框
+  &.radioBox {
+    .CheckRadioBox_left {
+      .checkSpan {
+        border-radius: 50%;
+
+        &::before {
+          content: '';
+          background-color: #fff;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 0;
+        }
+      }
+
+      &.checked {
+        .checkSpan {
+          &::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
  * @Date: 2023-02-20 11:01:47
  * @Description: 面包屑导航 v1 版本
  */
-import React from 'react';
+import React, { FC } from 'react';
 import './index.less';
 import { BreadCrumbProps, BreadcrumbItemProps } from './types';
 import classnames from 'classnames';
@@ -16,9 +16,9 @@ const Breadcrumb = (props: BreadCrumbProps): React.ReactElement => {
     </div>
   );
 };
+Breadcrumb.displayName = 'Breadcrumb';
 
-// eslint-disable-next-line react/display-name
-Breadcrumb.Item = (props: BreadcrumbItemProps): React.ReactElement => {
+const Item: FC<BreadcrumbItemProps> = (props: BreadcrumbItemProps): React.ReactElement => {
   const { onClick, children, className, Separator = '/' } = props;
   console.log(props);
   return (
@@ -39,6 +39,7 @@ Breadcrumb.Item = (props: BreadcrumbItemProps): React.ReactElement => {
   );
 };
 
-Breadcrumb.displayName = 'Breadcrumb';
+Item.displayName = 'BreadcrumbItem';
+Breadcrumb.Item = Item;
 
 export default Breadcrumb;

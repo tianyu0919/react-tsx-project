@@ -24,13 +24,13 @@ const Home = function Home() {
       >
         To Me
       </Button>
-
+      <Outlet />
       <div className="imgMaskContainer">
         <div className="item">
           <div className="left"></div>
           <div className="imgMask">
             {/* 1 */}
-            <img src="https://cdn.ripperhe.com/oss/master/2022/0828/volcengine_auth_1.jpg" alt="" />
+            <img src="https://bobtranslate.com/images/hero.png" alt="" />
           </div>
         </div>
         <div className="item">
@@ -69,7 +69,6 @@ const Home = function Home() {
           </div>
         </div>
       </div>
-      <Outlet />
     </>
   );
 };
