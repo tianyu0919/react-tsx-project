@@ -23,7 +23,7 @@ specifiers:
   axios: ^1.2.2
   babel-loader: ^9.1.2
   classnames: ^2.3.2
-  core-js: ^2.6.12
+  core-js: ^3.29.0
   cross-env: ^7.0.3
   css-loader: ^6.7.3
   css-minimizer-webpack-plugin: ^4.2.2
@@ -100,7 +100,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.48.1_3jon24igvnqaqexgwtxk6nkpse
   '@typescript-eslint/parser': 5.48.1_iukboom6ndih5an6iafl45j2fe
   babel-loader: 9.1.2_la66t7xldg4uecmyawueag5wkm
-  core-js: 2.6.12
+  core-js: 3.29.0
   cross-env: 7.0.3
   css-loader: 6.7.3_webpack@5.75.0
   css-minimizer-webpack-plugin: 4.2.2_webpack@5.75.0
@@ -3883,16 +3883,9 @@ packages:
     resolution: { integrity: sha512-BS2NHgwwUppfeoqOXqi08mUqS5FiZpuRuJJpKsaME7kJz0xxuk0xkhDdfMIlP/zLa80krBqss1LtD7f889heAw== }
     requiresBuild: true
 
-  /core-js/2.6.12:
-    resolution: { integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ== }
-    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
-    requiresBuild: true
-    dev: true
-
   /core-js/3.29.0:
     resolution: { integrity: sha512-VG23vuEisJNkGl6XQmFJd3rEG/so/CNatqeE+7uZAwTSwFeB/qaO0be8xZYUNWprJ/GIwL8aMt9cj1kvbpTZhg== }
     requiresBuild: true
-    dev: false
 
   /core-util-is/1.0.3:
     resolution: { integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ== }

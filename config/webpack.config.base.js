@@ -15,8 +15,8 @@ const WebpackBar = require('webpackbar');
 console.log(isDevelopment);
 
 module.exports = {
+  // entry: PATH.resolve(__dirname, '../test.ts'),
   entry: PATH.resolve(__dirname, '../src/index.tsx'),
-  // entry: PATH.resolve(__dirname, '../webpacktest/index.js'),
   // entry: PATH.resolve(__dirname, '../src/utils/layer/index.ts'),
   mode: isDevelopment ? 'development' : 'production',
   target: ['web', 'es5'],
@@ -77,16 +77,6 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: [
-                [
-                  '@babel/preset-env',
-                  {
-                    modules: false,
-                    useBuiltIns: 'usage',
-                    corejs: 2
-                  }
-                ]
-              ],
               plugins: isDevelopment ? [require.resolve('react-refresh/babel')] : []
             }
           }

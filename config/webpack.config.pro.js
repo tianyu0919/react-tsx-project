@@ -10,7 +10,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 module.exports = {
   ...baseConfig,
   plugins: [
-    ...baseConfig.plugins,
+    ...baseConfig.plugins
     // new ProgressPlugin({ // * webpack 默认的进度条
     //   activeModules: true,         // 默认false，显示活动模块计数和一个活动模块正在进行消息。
     //   entries: true,  			   // 默认true，显示正在进行的条目计数消息。
@@ -20,6 +20,6 @@ module.exports = {
     //   dependencies: false,         // 默认true，显示正在进行的依赖项计数消息。
     //   dependenciesCount: 10000,    // 默认10000，开始时的最小依赖项计数。PS:dependencies启用属性时生效。
     // }),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
   ]
 };
