@@ -24,7 +24,7 @@ export default function App(): React.ReactElement {
 
   async function add(): Promise<void> {
     setLoading(true);
-    await new Promise((resolve) => {
+    await new Promise(resolve => {
       setTimeout(() => {
         setLoading(false);
         resolve('xxxx');
@@ -34,12 +34,12 @@ export default function App(): React.ReactElement {
 
   useEffect(() => {
     console.log(mime.getType('mp3'));
-    const pathSnippets = location.pathname.split('/').filter((i) => i);
+    const pathSnippets = location.pathname.split('/').filter(i => i);
 
     const extraBreadcrumbItems = pathSnippets
       .map((_, idx) => {
         const url = `/${pathSnippets.slice(0, idx + 1).join('/')}`;
-        const [route] = Object.keys(routersMap).filter((pname) => {
+        const [route] = Object.keys(routersMap).filter(pname => {
           const pathReg = pathToRegexp(pname);
           if (pathReg.test(url)) {
             return routersMap[pname];
@@ -59,7 +59,7 @@ export default function App(): React.ReactElement {
           </Breadcrumbs.Item>
         );
       })
-      .filter((item) => item) as JSX.Element[];
+      .filter(item => item) as JSX.Element[];
 
     const breadcrumbItems = [
       <Breadcrumbs.Item
@@ -72,7 +72,7 @@ export default function App(): React.ReactElement {
       </Breadcrumbs.Item>
     ]
       .concat(extraBreadcrumbItems)
-      .filter((item) => item);
+      .filter(item => item);
 
     setBreadcrumbItems(breadcrumbItems);
   }, [location.pathname]);
@@ -91,7 +91,7 @@ export default function App(): React.ReactElement {
           </Button>
           <Button
             onClick={() => {
-              setNum((oldState) => oldState + 1);
+              setNum(oldState => oldState + 1);
               console.log(num());
             }}
           >
@@ -110,6 +110,13 @@ export default function App(): React.ReactElement {
             }}
           >
             About
+          </Button>
+          <Button
+            onClick={() => {
+              navigate('/chatgpt');
+            }}
+          >
+            chatgpt
           </Button>
         </Space>
         {/* <VueDemo /> */}
