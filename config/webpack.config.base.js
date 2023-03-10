@@ -26,7 +26,11 @@ module.exports = {
   output: {
     path: PATH.resolve(__dirname, '../dist'),
     filename: 'js/[name].bundle.js',
-    clean: true
+    clean: true,
+    environment: {
+      // * 告诉 webpack 当前打包环境规则是什么？
+      arrowFunction: false
+    }
     // library: {
     //   // name: 'mylib', // * 如果 type 为 module 必须添加name
     //   type: 'umd'
