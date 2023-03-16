@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { Button, Space } from 'antd';
 import './App.less';
-import VueDemo from './TestDemo/VueDemo';
+// import VueDemo from './TestDemo/VueDemo';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { routersMap } from './routers';
 import { pathToRegexp } from 'path-to-regexp';
@@ -16,13 +16,16 @@ import mime from 'mime';
 import { useSyncState } from './hooks';
 
 export default function App(): React.ReactElement {
+  console.log('我是App，渲染了');
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const [num, setNum] = useSyncState(1);
+  const [syncNum, setSyncNum] = useSyncState(1);
+  const [num, setNum] = useState(1);
   const [breadcrumbItems, setBreadcrumbItems] = useSyncState<any[]>([]);
 
-  async function add(): Promise<void> {
+  const add = async () => {
+    // const add = useCallback(async () => {
     setLoading(true);
     await new Promise(resolve => {
       setTimeout(() => {
@@ -30,7 +33,17 @@ export default function App(): React.ReactElement {
         resolve('xxxx');
       }, 3000);
     });
-  }
+  };
+  // }, [])
+  // async function add(): Promise<void> {
+  //   setLoading(true);
+  //   await new Promise(resolve => {
+  //     setTimeout(() => {
+  //       setLoading(false);
+  //       resolve('xxxx');
+  //     }, 3000);
+  //   });
+  // }
 
   useEffect(() => {
     console.log(mime.getType('mp3'));
@@ -52,6 +65,7 @@ export default function App(): React.ReactElement {
           <Breadcrumbs.Item
             key={url}
             onClick={(): void => {
+              if (location.pathname === url) return;
               navigate(url);
             }}
           >
@@ -65,6 +79,7 @@ export default function App(): React.ReactElement {
       <Breadcrumbs.Item
         key={'/'}
         onClick={(): void => {
+          if (location.pathname === '/') return;
           navigate('/');
         }}
       >
@@ -91,11 +106,19 @@ export default function App(): React.ReactElement {
           </Button>
           <Button
             onClick={() => {
-              setNum(oldState => oldState + 1);
-              console.log(num());
+              setSyncNum(oldState => oldState + 1);
+              console.log(syncNum());
             }}
           >
-            同步State---{num()}
+            同步State---{syncNum()}
+          </Button>
+          <Button
+            onClick={() => {
+              setNum(oldState => oldState + 1);
+              console.log(num);
+            }}
+          >
+            异步state---{num}
           </Button>
           <Button
             onClick={() => {

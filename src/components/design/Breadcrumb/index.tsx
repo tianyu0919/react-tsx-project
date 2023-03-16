@@ -8,7 +8,7 @@ import './index.less';
 import { BreadCrumbProps, BreadcrumbItemProps } from './types';
 import classnames from 'classnames';
 
-const Breadcrumb = (props: BreadCrumbProps): React.ReactElement => {
+const Breadcrumb: React.FC<BreadCrumbProps> & { Item: React.FC<BreadcrumbItemProps> } = (props: BreadCrumbProps) => {
   const { children } = props;
   return (
     <div className={classnames('BreadcrumbsContainer')}>

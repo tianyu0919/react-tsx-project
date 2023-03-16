@@ -16,6 +16,7 @@ console.log(isDevelopment);
 
 module.exports = {
   // entry: PATH.resolve(__dirname, '../test.ts'),
+  // entry: PATH.resolve(__dirname, '../src/Test/index.tsx'),
   entry: PATH.resolve(__dirname, '../src/index.tsx'),
   // entry: PATH.resolve(__dirname, '../src/utils/layer/index.ts'),
   mode: isDevelopment ? 'development' : 'production',
@@ -51,12 +52,14 @@ module.exports = {
         ? []
         : [
             new TerserPlugin({
+              // minify: TerserPlugin.terserMinify, // * 设置压缩方式，按照 uglify-js 压缩方法
               minify: TerserPlugin.uglifyJsMinify, // * 设置压缩方式，按照 uglify-js 压缩方法
+              extractComments: false, // * 关闭剥离注释功能 License.txt 文件
               terserOptions: {
                 // * 根据 minify 提交的压缩方式，配置压缩项。
                 compress: {
                   drop_console: true, // * 删除 console.log 日志
-                  drop_debugger: true
+                  drop_debugger: true // * 删除 debugger 代码。
                 }
               }
             })
