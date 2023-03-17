@@ -1,7 +1,6 @@
 {
   // "files": [
-  //   // "./config/webpack.config.dev.js"
-  //   "__local/**/*"
+  // "./.eslintrc.cjs"
   // ],
   "include": ["src/**/*"],
   "exclude": ["**/*.test.ts", "node_modules/**/*"],

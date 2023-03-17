@@ -11,6 +11,7 @@ const PATH = require('path');
 const isDevelopment = process.env.NODE_ENV;
 const { VueLoaderPlugin } = require('vue-loader');
 const WebpackBar = require('webpackbar');
+const postcssPresetEnv = require('postcss-preset-env');
 
 console.log(isDevelopment);
 
@@ -95,7 +96,19 @@ module.exports = {
       },
       {
         test: /\.(le|c)ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        use: [
+          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { importLoaders: 2 } },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [postcssPresetEnv()]
+              }
+            }
+          },
+          'less-loader'
+        ],
         exclude: /node_modules/
       },
       {

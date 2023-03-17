@@ -1,0 +1,57 @@
+.AboutContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 175px - 1px);
+
+  h2 {
+    height: 27px;
+    line-height: 27px;
+  }
+
+  .checkBoxContainer {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .transformBox {
+    height: calc(100% - 27px - 0.5em - 20px);
+    width: 100%;
+    padding: 10px 8px;
+    box-sizing: border-box;
+    background-clip: content-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+
+    .transformBox_outBox {
+      perspective: 1000px;
+
+      .transformBox_item {
+        width: 600px;
+        height: 300px;
+        border: 1px solid #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 13px;
+        perspective: 500px;
+        transform-style: preserve-3d;
+        // transition: transform .3s;
+
+        .transformBox_item_text {
+          letter-spacing: 0.7rem;
+          transition: transform 0.3s;
+          transform: translateZ(70px);
+        }
+
+        &:hover .transformBox_item_text {
+        }
+      }
+    }
+  }
+}
