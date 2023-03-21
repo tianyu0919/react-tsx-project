@@ -3,15 +3,19 @@
  * @Date: 2023-02-10 11:20:24
  * @Description:
  */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CheckRadioBox } from 'src/components/design';
 import './index.less';
 import rotateBox from 'src/utils/rotateBox';
+// import rotateBox from 'src/utils/rotateBox/bundle.js';
 
 export default function About() {
+  const [isChecked, setIsChecked] = useState(false);
+
   useEffect(() => {
     rotateBox('.transformBox_item', {
-      multiple: 15
+      multiple: 8,
+      resizeDelay: 0
     });
   }, []);
   return (
@@ -30,6 +34,7 @@ export default function About() {
           type="checkbox"
           onChange={(val): void => {
             console.log(val);
+            setIsChecked(val);
           }}
         >
           单选框
@@ -42,7 +47,12 @@ export default function About() {
           </div>
         </div>
 
-        <div className="transformBox_outBox">
+        <div
+          className="transformBox_outBox"
+          style={{
+            width: isChecked ? '300px' : ''
+          }}
+        >
           <div className="transformBox_item">
             <span className="transformBox_item_text">Hello Box2</span>
           </div>

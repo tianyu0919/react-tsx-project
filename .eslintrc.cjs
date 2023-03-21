@@ -10,7 +10,7 @@ module.exports = {
     es2021: true,
     node: true
   },
-  ignorePatterns: ['src/TestDemo/**/*', '*.test.ts', 'dist'], // * 忽略项，不检查什么文件
+  ignorePatterns: ['src/TestDemo/**/*', '*.test.ts', 'dist', 'src/**/*.js'], // * 忽略项，不检查什么文件
   extends: [
     'eslint:recommended', // * eslint 本身的集成
     'plugin:react/recommended',

@@ -1,0 +1,7 @@
+.rotate-wrapper {
+  cursor: pointer;
+}
+
+.rotate-wrapper > * {
+  will-change: transform;
+}
