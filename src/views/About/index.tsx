@@ -3,8 +3,9 @@
  * @Date: 2023-02-10 11:20:24
  * @Description:
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { CheckRadioBox } from 'src/components/design';
+import { Button } from 'antd';
 import './index.less';
 import rotateBox from 'src/utils/rotateBox';
 // import rotateBox from 'src/utils/rotateBox/bundle.js';
@@ -18,9 +19,12 @@ export default function About() {
       resizeDelay: 0
     });
   }, []);
+
   return (
     <div className="AboutContainer">
-      <h2>About</h2>
+      <div style={{ marginBottom: 10 }}>
+        <h2>About</h2>
+      </div>
       <div className="checkBoxContainer">
         <CheckRadioBox
           type="radio"

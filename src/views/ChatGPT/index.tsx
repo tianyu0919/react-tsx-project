@@ -7,7 +7,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { Button, Space, Input } from 'antd';
 import classnames from 'classnames';
 import './index.less';
-import axios from 'axios';
+import axios, { type AxiosStatic } from 'axios';
 import { ResultArrProps } from './types';
 
 import ReactMarkdown from 'react-markdown';
@@ -19,6 +19,24 @@ import rehypeRaw from 'rehype-raw';
 import RemarkEmoji from 'remark-emoji';
 
 let eventSe: EventSource | null = null;
+type axiosType = { [p: string]: any } & AxiosStatic;
+
+async function axioX(url: string, method = 'get'): Promise<any> {
+  const val = await new Promise(resolve => {
+    (axios as axiosType)[method](url).then((res: any) => {
+      console.log(res, '1');
+      resolve(res);
+    });
+  });
+  console.log(2);
+  return val;
+}
+
+// 这种写法
+(async (): Promise<void> => {
+  const val = await axioX('https://api.vvhan.com/api/weather');
+  console.log(val, '接口返回值');
+})();
 
 const ChatGPT: FC = () => {
   const [input, setInput] = useState('');
@@ -122,13 +140,15 @@ const ChatGPT: FC = () => {
                       code({ node, inline, className, children, ...props }) {
                         console.log(className);
                         const match = /language-(\w+)/.exec(className || '');
+                        console.log(match);
                         // return !inline && match ? (
                         return match ? (
                           <SyntaxHighlighter
                             showLineNumbers={true}
-                            lineNumberStyle={{ color: '#ccc', fontSize: 10 }} // 左侧行数的样式
+                            // lineNumberStyle={{ color: '#ccc', fontSize: 10 }} // 左侧行数的样式
+                            lineNumberStyle={lineNumber => ({ color: '#ccc', fontSize: 10 })} // 左侧行数的样式
                             style={oneDark as any}
-                            language={'tsx'}
+                            language={match[1]}
                             PreTag="div"
                             {...props}
                           >
