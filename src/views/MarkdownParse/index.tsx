@@ -1,24 +1,27 @@
-/*
- * @Author: tianyu
- * @Date: 2023-03-30 17:08:31
- * @Description:
- */
 import React, { useEffect, useState } from 'react';
 import './index.less';
 import { Input, Button } from 'antd';
 import markdown from 'markdown-it';
 import { parseToJson } from './utils/markdownToJson';
 import ReactJsonView from 'react-json-view';
+import mdtemplate from './data.md';
 
 export default function MarkdownParse(): any {
-  const [textareaValue, setTextareaValue] = useState('');
+  const [textareaValue, setTextareaValue] = useState(mdtemplate);
 
-  function parse(): void {
+  async function parse(): Promise<void> {
     const md = new markdown('commonmark', {
       html: true
     });
-    const ast = md.parse(textareaValue, {});
-    const formatJson = parseToJson(ast);
+    const ast = md.parse(textareaValue, {
+      html: false,
+      linkify: true,
+      typographer: true
+    });
+
+    const html = md.render(textareaValue);
+    console.log(html);
+    const formatJson = await parseToJson(ast);
     console.log(formatJson);
   }
 

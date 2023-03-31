@@ -135,6 +135,13 @@ module.exports = {
         generator: {
           outputPath: 'assets'
         }
+      },
+      {
+        test: /\.(md)$/i,
+        type: 'asset/source',
+        generator: {
+          outputPath: 'assets/markdown'
+        }
       }
     ]
   },
