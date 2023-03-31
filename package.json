@@ -64,11 +64,13 @@
   },
   "dependencies": {
     "@douyinfe/semi-ui": "^2.28.1",
+    "@types/markdown-it": "^12.2.3",
     "@types/react-syntax-highlighter": "^15.5.6",
     "ant-design-vue": "^3.2.15",
     "antd": "^5.1.7",
     "axios": "^1.2.2",
     "classnames": "^2.3.2",
+    "markdown-it": "^13.0.1",
     "mime": "^3.0.0",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",

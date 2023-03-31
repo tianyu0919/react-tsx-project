@@ -46,7 +46,8 @@ export const routers: RoutesTypes[] = [
         ]
       },
       { path: '/about', name: 'About', element: <RouterMiddleware path={'views/About'} /> },
-      { path: '/chatgpt', name: 'ChatGPT', element: <RouterMiddleware path={'views/ChatGPT'} /> }
+      { path: '/chatgpt', name: 'ChatGPT', element: <RouterMiddleware path={'views/ChatGPT'} /> },
+      { path: '/markdownParse', name: 'markdownParse', element: <RouterMiddleware path={'views/MarkdownParse'} /> }
     ]
   },
   {

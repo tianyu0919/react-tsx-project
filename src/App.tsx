@@ -141,6 +141,13 @@ export default function App(): React.ReactElement {
           >
             chatgpt
           </Button>
+          <Button
+            onClick={() => {
+              navigate('/markdownParse');
+            }}
+          >
+            markdownParse
+          </Button>
         </Space>
         {/* <VueDemo /> */}
       </div>
