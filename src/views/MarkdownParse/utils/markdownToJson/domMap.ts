@@ -5,17 +5,17 @@
  */
 // import { BlockType } from '@lark-opdev/block-docs-addon-api';
 import { BlockType } from './types/BlockType';
-const domMap: { [tagname: string]: BlockType } = {
-  h1: BlockType.HEADING1,
-  h2: BlockType.HEADING2,
-  h3: BlockType.HEADING3,
-  h4: BlockType.HEADING4,
-  h5: BlockType.HEADING5,
-  h6: BlockType.HEADING6,
-  ul: BlockType.BULLET,
-  ol: BlockType.ORDERED,
-  p: BlockType.TEXT,
-  code: BlockType.CODE
+const domMap: { [tagname: string]: string } = {
+  h1: 'HEADING1',
+  h2: 'HEADING2',
+  h3: 'HEADING3',
+  h4: 'HEADING4',
+  h5: 'HEADING5',
+  h6: 'HEADING6',
+  ul: 'BULLET',
+  ol: 'ORDERED',
+  p: 'TEXT',
+  code: 'CODE'
 };
 
 export default domMap;

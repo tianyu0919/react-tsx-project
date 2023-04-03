@@ -2,7 +2,7 @@
 import { BlockType } from './BlockType';
 
 export interface formatType {
-  type: BlockType;
+  type: string;
   content: string;
   language?: string;
   children?: formatType[];

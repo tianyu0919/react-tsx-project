@@ -59,39 +59,61 @@ function parseToJson(ast: Token[]): formatType[] {
   console.group('markdown-parse-ast');
   console.log(ast);
   console.groupEnd();
-
+  // *  存放顺序的栈 如果有 nesting为 1 就插入，如果是 -1 就删除
   const stack = [];
-
+  // * 最终得值
   const formatData: formatType[] = [];
 
   for (let i = 0; i < ast.length; i++) {
     const token = ast[i];
     // console.group('markdown-parse-token');
     // console.log(token);
-    const { nesting, tag, content, info } = ast[i];
+    const { nesting, tag, type, content, info } = token;
 
-    const obj: formatType = {
-      type: domMap[tag],
-      content: ''
-    };
+    const htmlType = domMap[tag];
 
-    if (nesting === 1) {
-      // * 打开
-    } else if (nesting === 0) {
-      // * 内容
-      obj.content = content;
-      if (tag === 'code') {
-        obj.language = info;
+    if (htmlType) {
+      // * 如果存在所指定的标签 例如 ul p
+      const mdParseObj: formatType = {
+        type: htmlType,
+        content: '',
+        children: []
+      };
+
+      // if (htmlType === 'code') {
+      //   // * code
+      //   mdParseObj.content = content;
+      //   mdParseObj.language = info;
+      //   break;
+      // }
+
+      if (nesting === 1) {
+        // * 打开
+        stack.push(mdParseObj);
+      } else if (nesting === 0) {
+        // * 内容
+        mdParseObj.content = content;
+        if (tag === 'code') {
+          mdParseObj.language = info;
+        }
+
+        // console.log(content);
+      } else if (nesting === -1) {
+        // * 关闭
       }
-
-      // console.log(content);
-    } else if (nesting === -1) {
-      // * 关闭
+      // console.groupEnd();
+    } else {
+      if (type === 'inline') {
+        stack[stack.length - 1].content = content;
+      }
     }
-    // console.groupEnd();
-    formatData.push(obj);
+    // formatData.push(mdParseObj);
   }
-  return formatData;
+
+  function deepFindChildren() {}
+
+  console.log(stack);
+  return ast as formatType[];
 }
 
 // const TYPE_KEYWORD = {
@@ -161,4 +183,4 @@ function parseToJson(ast: Token[]): formatType[] {
 
 // console.log(result);
 
-export { parseToJson };
+export { parseToJson, type formatType };

@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react';
 import './index.less';
 import { Input, Button } from 'antd';
 import markdown from 'markdown-it';
-import { parseToJson } from './utils/markdownToJson';
+import { parseToJson, formatType } from './utils/markdownToJson';
 import ReactJsonView from 'react-json-view';
 import mdtemplate from './data.md';
 
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+
 export default function MarkdownParse(): any {
   const [textareaValue, setTextareaValue] = useState(mdtemplate);
+  const [parseMarkdown, setParseMarkdown] = useState<formatType[]>([]);
 
   async function parse(): Promise<void> {
-    const md = new markdown('commonmark', {
+    const md = new markdown('default', {
       html: true
     });
     const ast = md.parse(textareaValue, {
@@ -22,8 +26,17 @@ export default function MarkdownParse(): any {
     const html = md.render(textareaValue);
     console.log(html);
     const formatJson = await parseToJson(ast);
-    console.log(formatJson);
+    // console.log(formatJson);
+    setParseMarkdown(formatJson);
+
+    // const asts = unified().use(remarkParse).parse(textareaValue);
+    // console.log(asts);
+    // setParseMarkdown(asts as any);
   }
+
+  useEffect(() => {
+    parse();
+  }, []);
 
   return (
     <>
@@ -35,7 +48,7 @@ export default function MarkdownParse(): any {
           </div>
           <Button onClick={parse}>解析</Button>
           <div className="markdownParse-json">
-            <ReactJsonView src={[{ name: 'x' }]} displayDataTypes={false} />
+            <ReactJsonView src={parseMarkdown} displayDataTypes={false} />
           </div>
         </div>
       </div>
