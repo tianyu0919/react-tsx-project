@@ -4,7 +4,7 @@ import { Input, Button } from 'antd';
 import markdown from 'markdown-it';
 import { parseToJson, formatType } from './utils/markdownToJson';
 import ReactJsonView from 'react-json-view';
-import mdtemplate from './data.md';
+import mdtemplate from './template.md';
 
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
