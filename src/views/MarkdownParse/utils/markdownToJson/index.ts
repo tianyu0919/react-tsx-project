@@ -189,6 +189,16 @@ const deepFindLevel = (parentObj: ResultTypes, currentObj: CacheTypes | undefine
   }
 };
 
+function findLastResultAsNum(instanceResult: ResultTypes, num: number): ResultTypes {
+  if (num <= 0) {
+    return instanceResult;
+  }
+  const children = instanceResult.children;
+  const result = children ? children[children.length - 1] : instanceResult;
+
+  return findLastResultAsNum(result, num - 1);
+}
+
 function parseToJson2(source: Token[]): formatType[] {
   for (const item of source) {
     if (item.type.includes(TYPE_KEYWORD.OPEN)) {
@@ -207,7 +217,9 @@ function parseToJson2(source: Token[]): formatType[] {
         Cache.length > 1 ? findLast.call<CacheTypes[], [(item: CacheTypes) => boolean], CacheTypes | undefined>(Cache, item => item.tag !== 'li' && item.tag !== 'p') : Cache[Cache.length - 1];
       // type-other 直接插入
       if (Result.length) {
-        const lastResult = Result[Result.length - 1];
+        const lastCacheNum = Cache.filter(item => item.tag === lastCache?.tag).length;
+        const lastResult = findLastResultAsNum(Result[Result.length - 1], lastCacheNum - 1);
+        // const lastResult = Result[Result.length - 1];
         if (lastResult.level !== 0 && lastResult.level < item.level) {
           deepFindLevel(lastResult, lastCache, item);
         } else {
