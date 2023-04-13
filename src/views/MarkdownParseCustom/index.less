@@ -1,0 +1,33 @@
+.markdownParseContainer {
+  height: calc(100vh - 177px);
+
+  h2 {
+    text-align: center;
+  }
+
+  .markdownParse-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: calc(100% - 39px);
+    column-gap: 5px;
+
+    .markdownParse-textarea,
+    .markdownParse-json {
+      flex: 1;
+      height: 100%;
+
+      & > * {
+        height: 100%;
+      }
+    }
+
+    .markdownParse-json {
+      border: 1px solid #d9d9d9;
+      padding: 6px;
+      box-sizing: border-box;
+      border-radius: 6px;
+      overflow: auto;
+    }
+  }
+}

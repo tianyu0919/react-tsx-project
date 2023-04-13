@@ -105,7 +105,7 @@ export default function App(): React.ReactElement {
             点击
           </Button>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               setSyncNum(oldState => oldState + 1);
               console.log(syncNum());
             }}
@@ -113,7 +113,7 @@ export default function App(): React.ReactElement {
             同步State---{syncNum()}
           </Button>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               setNum(oldState => oldState + 1);
               console.log(num);
             }}
@@ -121,32 +121,39 @@ export default function App(): React.ReactElement {
             异步state---{num}
           </Button>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               navigate('/home');
             }}
           >
             Home
           </Button>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               navigate('/about');
             }}
           >
             About
           </Button>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               navigate('/chatgpt');
             }}
           >
             chatgpt
           </Button>
           <Button
-            onClick={() => {
+            onClick={(): void => {
               navigate('/markdownParse');
             }}
           >
             markdownParse
+          </Button>
+          <Button
+            onClick={(): void => {
+              navigate('/markdownParsecustom');
+            }}
+          >
+            markdownParsecustom
           </Button>
         </Space>
         {/* <VueDemo /> */}
