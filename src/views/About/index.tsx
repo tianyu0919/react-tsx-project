@@ -10,7 +10,7 @@ import './index.less';
 import rotateBox from 'src/utils/rotateBox';
 // import rotateBox from 'src/utils/rotateBox/bundle.js';
 
-export default function About() {
+const About: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [count, setCount] = useState(0);
 
@@ -82,4 +82,6 @@ export default function About() {
       <div>{BoxMemo}</div>
     </div>
   );
-}
+};
+
+export default About;
