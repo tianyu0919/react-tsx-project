@@ -11,8 +11,8 @@ import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { Routers } from 'src/routers';
 import 'nprogress/nprogress.css';
 
-import App from './App';
-import Demo from './Demo';
+// import App from './App';
+// import Demo from './Demo';
 
 const container = document.querySelector('#root');
 const root = createRoot(container!);
