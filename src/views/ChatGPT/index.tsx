@@ -24,7 +24,7 @@ type axiosType = { [p: string]: any } & AxiosStatic;
 async function axioX(url: string, method = 'get'): Promise<any> {
   const val = await new Promise(resolve => {
     (axios as axiosType)[method](url).then((res: any) => {
-      console.log(res, '1');
+      console.log(res, '12');
       resolve(res);
     });
   });
