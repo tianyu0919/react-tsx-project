@@ -155,10 +155,19 @@ export default function App(): React.ReactElement {
           >
             markdownParsecustom
           </Button>
+          <Button
+            onClick={(): void => {
+              navigate('/hooks');
+            }}
+          >
+            hooks
+          </Button>
         </Space>
         {/* <VueDemo /> */}
       </div>
-      <Outlet />
+      <div className="content-outBox">
+        <Outlet />
+      </div>
     </>
   );
 }

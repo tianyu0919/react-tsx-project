@@ -48,7 +48,21 @@ export const routers: RoutesTypes[] = [
       { path: '/about', name: 'About', element: <RouterMiddleware path={'views/About'} /> },
       { path: '/chatgpt', name: 'ChatGPT', element: <RouterMiddleware path={'views/ChatGPT'} /> },
       { path: '/markdownParse', name: 'markdownParse', element: <RouterMiddleware path={'views/MarkdownParse'} /> },
-      { path: '/markdownParsecustom', name: 'markdownParsecustom', element: <RouterMiddleware path={'views/MarkdownParseCustom'} /> }
+      { path: '/markdownParsecustom', name: 'markdownParsecustom', element: <RouterMiddleware path={'views/MarkdownParseCustom'} /> },
+      {
+        path: '/hooks',
+        name: 'hooks',
+        element: <RouterMiddleware path={'views/Hooks'} />,
+        children: [
+          { index: true, element: <div>nihao</div> },
+          { path: '/hooks/useCallback', name: 'useCallback', element: <RouterMiddleware path={'views/Hooks/views/useCallback'} /> },
+          { path: '/hooks/useMemo', name: 'useMemo', element: <RouterMiddleware path={'views/Hooks/views/useMemo'} /> },
+          {
+            path: '/hooks/*',
+            element: <RouterMiddleware component={<div>404 notFound</div>} />
+          }
+        ]
+      }
     ]
   },
   {
