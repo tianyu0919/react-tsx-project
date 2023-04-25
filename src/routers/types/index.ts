@@ -8,4 +8,5 @@ export interface RoutesTypes {
 export interface RouterMiddlewareTypes {
   path?: string;
   component?: JSX.Element;
+  showLoading?: boolean;
 }

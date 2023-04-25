@@ -6,32 +6,32 @@ import { RoutesTypes, RouterMiddlewareTypes } from './types';
 export const routersMap: { [protoName: string]: string } = {};
 
 // * 加载页面 loading 效果
-function LazyComponent(): React.ReactElement {
-  nProgress.start();
+function LazyComponent({ showLoading }: { showLoading?: boolean }): React.ReactElement {
+  !showLoading && nProgress.start();
   return <div>loading...</div>;
 }
 
 // * router 中间件 用来显示 nProgress
 export function RouterMiddleware(props: RouterMiddlewareTypes): React.ReactElement {
-  const { path, component } = props;
+  const { path, component, showLoading } = props;
   let Component = null;
   if (path) {
     Component = lazy(() => {
-      return new Promise((resolve) => {
-        import(`src/${path}`).then((res) => {
-          nProgress.done();
+      return new Promise(resolve => {
+        import(`src/${path}`).then(res => {
+          !showLoading && nProgress.done();
           resolve(res);
         });
       });
     });
   } else if (component) {
     Component = lazy(() => {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         const Ele: never = function JSXElement() {
           return <>{component}</>;
         } as never;
         setTimeout(() => {
-          nProgress.done();
+          !showLoading && nProgress.done();
           resolve({ default: Ele });
         }, 100);
       });
@@ -40,7 +40,7 @@ export function RouterMiddleware(props: RouterMiddlewareTypes): React.ReactEleme
 
   return (
     <>
-      <Suspense fallback={<LazyComponent />}>
+      <Suspense fallback={<LazyComponent showLoading={showLoading} />}>
         <Component />
       </Suspense>
     </>

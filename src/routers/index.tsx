@@ -54,7 +54,7 @@ export const routers: RoutesTypes[] = [
         name: 'hooks',
         element: <RouterMiddleware path={'views/Hooks'} />,
         children: [
-          { index: true, element: <div>nihao</div> },
+          { index: true, element: <RouterMiddleware path={'views/Hooks/views'} showLoading /> },
           { path: '/hooks/useCallback', name: 'useCallback', element: <RouterMiddleware path={'views/Hooks/views/useCallback'} /> },
           { path: '/hooks/useMemo', name: 'useMemo', element: <RouterMiddleware path={'views/Hooks/views/useMemo'} /> },
           {
