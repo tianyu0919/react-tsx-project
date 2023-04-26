@@ -15,6 +15,16 @@ import { Breadcrumbs, Button as AButton } from 'components/design';
 import mime from 'mime';
 import { useSyncState } from './hooks';
 
+const ButtonList = [
+  { path: '/home', text: 'Home' },
+  { path: '/about', text: 'About' },
+  { path: '/chatgpt', text: 'ChatGPT' },
+  { path: '/markdownParse', text: 'MarkdownParse' },
+  { path: '/markdownParsecustom', text: 'MarkdownParsecustom' },
+  { path: '/hooks', text: 'Hooks' },
+  { path: '/FunctionCompose', text: 'FunctionCompose' }
+];
+
 export default function App(): React.ReactElement {
   console.log('我是App，渲染了');
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,16 +44,6 @@ export default function App(): React.ReactElement {
       }, 3000);
     });
   };
-  // }, [])
-  // async function add(): Promise<void> {
-  //   setLoading(true);
-  //   await new Promise(resolve => {
-  //     setTimeout(() => {
-  //       setLoading(false);
-  //       resolve('xxxx');
-  //     }, 3000);
-  //   });
-  // }
 
   useEffect(() => {
     console.log(mime.getType('mp3'));
@@ -120,48 +120,16 @@ export default function App(): React.ReactElement {
           >
             异步state---{num}
           </Button>
-          <Button
-            onClick={(): void => {
-              navigate('/home');
-            }}
-          >
-            Home
-          </Button>
-          <Button
-            onClick={(): void => {
-              navigate('/about');
-            }}
-          >
-            About
-          </Button>
-          <Button
-            onClick={(): void => {
-              navigate('/chatgpt');
-            }}
-          >
-            chatgpt
-          </Button>
-          <Button
-            onClick={(): void => {
-              navigate('/markdownParse');
-            }}
-          >
-            markdownParse
-          </Button>
-          <Button
-            onClick={(): void => {
-              navigate('/markdownParsecustom');
-            }}
-          >
-            markdownParsecustom
-          </Button>
-          <Button
-            onClick={(): void => {
-              navigate('/hooks');
-            }}
-          >
-            hooks
-          </Button>
+          {ButtonList.map(BtnItem => (
+            <Button
+              key={BtnItem.text}
+              onClick={(): void => {
+                navigate(BtnItem.path);
+              }}
+            >
+              {BtnItem.text}
+            </Button>
+          ))}
         </Space>
         {/* <VueDemo /> */}
       </div>

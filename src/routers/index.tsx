@@ -62,6 +62,11 @@ export const routers: RoutesTypes[] = [
             element: <RouterMiddleware component={<div>404 notFound</div>} />
           }
         ]
+      },
+      {
+        path: '/functionCompose',
+        name: 'FunctionCompose',
+        element: <RouterMiddleware component={<RouterMiddleware path={'views/FunctionCompose'} />} />
       }
     ]
   },
