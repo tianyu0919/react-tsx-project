@@ -22,7 +22,8 @@ const ButtonList = [
   { path: '/markdownParse', text: 'MarkdownParse' },
   { path: '/markdownParsecustom', text: 'MarkdownParsecustom' },
   { path: '/hooks', text: 'Hooks' },
-  { path: '/FunctionCompose', text: 'FunctionCompose' }
+  { path: '/FunctionCompose', text: 'FunctionCompose' },
+  { path: '/editor', text: 'editor' }
 ];
 
 export default function App(): React.ReactElement {

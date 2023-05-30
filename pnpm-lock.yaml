@@ -42,6 +42,8 @@ specifiers:
   markdown-it: ^13.0.1
   mime: ^3.0.0
   mini-css-extract-plugin: ^2.7.2
+  monaco-editor: ^0.38.0
+  monaco-editor-webpack-plugin: ^7.0.1
   normalize.css: ^8.0.1
   nprogress: ^0.2.0
   path-to-regexp: ^6.2.1
@@ -89,6 +91,7 @@ dependencies:
   classnames: 2.3.2
   markdown-it: 13.0.1
   mime: 3.0.0
+  monaco-editor: 0.38.0
   normalize.css: 8.0.1
   nprogress: 0.2.0
   path-to-regexp: 6.2.1
@@ -142,6 +145,7 @@ devDependencies:
   less-loader: 11.1.0_less@4.1.3+webpack@5.75.0
   lint-staged: 13.1.0
   mini-css-extract-plugin: 2.7.2_webpack@5.75.0
+  monaco-editor-webpack-plugin: 7.0.1_te3y5ybz2ntvkwqj4yzmdeepqq
   postcss: 8.4.21
   postcss-loader: 7.1.0_6jdsrmfenkuhhw3gx4zvjlznce
   postcss-preset-env: 8.0.1_postcss@8.4.21
@@ -7862,6 +7866,20 @@ packages:
   /minimist/1.2.7:
     resolution: { integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g== }
     dev: true
+
+  /monaco-editor-webpack-plugin/7.0.1_te3y5ybz2ntvkwqj4yzmdeepqq:
+    resolution: { integrity: sha512-M8qIqizltrPlIbrb73cZdTWfU9sIsUVFvAZkL3KGjAHmVWEJ0hZKa/uad14JuOckc0GwnCaoGHvMoYtJjVyCzw== }
+    peerDependencies:
+      monaco-editor: '>= 0.31.0'
+      webpack: ^4.5.0 || 5.x
+    dependencies:
+      loader-utils: 2.0.4
+      monaco-editor: 0.38.0
+      webpack: 5.75.0_lyfwzfzdjkawavunln6hzgk2bu
+    dev: true
+
+  /monaco-editor/0.38.0:
+    resolution: { integrity: sha512-11Fkh6yzEmwx7O0YoLxeae0qEGFwmyPRlVxpg7oF9czOOCB/iCjdJrG5I67da5WiXK3YJCxoz9TJFE8Tfq/v9A== }
 
   /mri/1.2.0:
     resolution: { integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA== }

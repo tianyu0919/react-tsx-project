@@ -12,13 +12,22 @@ const isDevelopment = process.env.NODE_ENV;
 const { VueLoaderPlugin } = require('vue-loader');
 const WebpackBar = require('webpackbar');
 const postcssPresetEnv = require('postcss-preset-env');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 console.log(isDevelopment);
 
 module.exports = {
   // entry: PATH.resolve(__dirname, '../test.ts'),
   // entry: PATH.resolve(__dirname, '../src/Test/index.tsx'),
-  entry: PATH.resolve(__dirname, '../src/index.tsx'),
+  // entry: PATH.resolve(__dirname, '../src/index.tsx'),
+  entry: {
+    app: PATH.resolve(__dirname, '../src/index.tsx'),
+    'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker.js',
+    'json.worker': 'monaco-editor/esm/vs/language/json/json.worker',
+    'css.worker': 'monaco-editor/esm/vs/language/css/css.worker',
+    'html.worker': 'monaco-editor/esm/vs/language/html/html.worker',
+    'ts.worker': 'monaco-editor/esm/vs/language/typescript/ts.worker'
+  },
   // entry: PATH.resolve(__dirname, '../src/utils/layer/index.ts'),
   mode: isDevelopment ? 'development' : 'production',
   target: ['web', 'es5'],
@@ -32,7 +41,8 @@ module.exports = {
     environment: {
       // * 告诉 webpack 当前打包环境规则是什么？
       arrowFunction: false
-    }
+    },
+    globalObject: 'self'
     // library: {
     //   // name: 'mylib', // * 如果 type 为 module 必须添加name
     //   type: 'umd'
@@ -158,6 +168,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new MonacoWebpackPlugin()
   ]
 };

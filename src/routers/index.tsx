@@ -67,6 +67,11 @@ export const routers: RoutesTypes[] = [
         path: '/functionCompose',
         name: 'FunctionCompose',
         element: <RouterMiddleware component={<RouterMiddleware path={'views/FunctionCompose'} />} />
+      },
+      {
+        path: '/editor',
+        name: 'editor',
+        element: <RouterMiddleware component={<RouterMiddleware path={'views/Editor'} />} />
       }
     ]
   },
