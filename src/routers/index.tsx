@@ -72,6 +72,11 @@ export const routers: RoutesTypes[] = [
         path: '/editor',
         name: 'editor',
         element: <RouterMiddleware component={<RouterMiddleware path={'views/Editor'} />} />
+      },
+      {
+        path: '/flowLayout',
+        name: 'flowLayout',
+        element: <RouterMiddleware component={<RouterMiddleware path={'views/FlowLayout'} />} />
       }
     ]
   },
