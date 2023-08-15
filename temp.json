@@ -1,0 +1,82 @@
+{
+  "sjsljfsl": {
+    "type": "emun",
+    "values": ["man", "woman"],
+  },
+  "/getUser": {
+    "POST": {
+      
+    },
+    "requset": {
+      "name": "string",
+      "age": "number",
+      "sex": "sjsljfsl"
+    },
+    "response": {
+      "GET"
+    }
+  },
+  "response": {}
+}
+
+{
+  "/getUser": {
+    "POST": {
+      "name": "string",
+      "age": "Number",
+      "sex": {
+        "type": "emun",
+        "values": ["man", "woman"],
+      }
+    }
+  }
+}
+
+// 1. 怎么渲染到表单 Arco Design。
+// 2. 多级表单，递归方法
+
+function parse(json) {
+  const dom = [];
+  [<input> , <input /> , [child],]
+  for(let [key, type] = Object.entries(json)) {
+    dom.push(renderDOM(key, type));
+  }
+
+  return dom;
+}
+
+function renderDOM(key, type) {
+  if(type === 'string' || type === "Number") {
+    <input name={key} />
+  } else if(typeof type === 'object'){
+    const {itemName, values} = type;
+    if(type.type === 'emun') {
+      return (
+        <Option name={key}>
+          {
+            values.map((item, idx) => {
+              return <Option name={itemName} value={item}>{item}</Option>
+            })
+          }
+        </Option>
+      )
+    } else {
+      return parse(type);
+    }
+  }
+}
+
+useEffect(() => {
+  setDom(parse(schame));
+}, [])
+
+render(){
+  return(
+    
+  )
+}
+
+// 修改 hosts 文件
+dev.bytedance.net:9527
+
+sso .bytedance.net cookie
